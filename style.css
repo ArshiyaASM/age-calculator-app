@@ -76,10 +76,13 @@ body {
     background-color: hsl(259, 100%, 65%);
     position: absolute;
     border-radius: 50%;
-    background-image: url("img/icon-arrow.svg");
-    background-size: 30px;
-    background-position: center;
-    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-image: url("img/icon-arrow.svg"); */
+    /* background-size: 30px; */
+    /* background-position: center; */
+    /* background-repeat: no-repeat; */
     margin: auto;
     right: 0px;
     left: 0px;
