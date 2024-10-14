@@ -45,14 +45,16 @@
     .container {
         width: 600px;
         height: 500px;
-        box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
-        border-radius: 20px;
-        border-bottom-right-radius: 150px;
-        background-color: hsl(0, 0%, 100%);
-        padding: 50px;
-    
     }
 
+
+    .container .bottom {
+        font-size: 50px;
+    }
+
+    .container .top form input {
+        font-size: 16px;
+    }
 }
 
 
