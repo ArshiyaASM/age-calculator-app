@@ -338,14 +338,40 @@ button.addEventListener("click" , ()=>{
         }
 
         if(checker3 == true){
-            const different = toDayDate.diff(dateInInput , "day");
-            const Year_calculate = Math.floor(different / 365);
-            const Month_calculate = Math.floor(different % 365 / 31);
-            const Day_calculate = Math.floor(different % 365 % 31);
-            year.innerHTML = Year_calculate;
-            month.innerHTML = Month_calculate;
-            day.innerHTML = Day_calculate;
 
+            const dob = new Date((input[2].value+"-"+input[1].value+"-"+input[0].value));
+            const currentDate = new Date();
+
+            const ageInMilliseconds = currentDate - dob;
+            const ageInYears = ageInMilliseconds / (365 * 24 * 60 * 60 * 1000);
+            const age = Math.floor(ageInYears);
+
+            currentDate.setFullYear(currentDate.getFullYear() - age);
+            const monthDiff = currentDate.getMonth() - dob.getMonth();
+
+            let months = monthDiff;
+            if (currentDate.getDate() < dob.getDate()) {
+                months--;
+            }
+
+            if(currentDate.getMonth() < dob.getMonth()){
+                months += 12;
+            }
+
+            let days = currentDate.getDate() - dob.getDate();
+            if (days < 0) {
+                const lastDayOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 0).getDate();
+                days = lastDayOfMonth - dob.getDate() + currentDate.getDate();
+            }
+
+            year.innerHTML = age;
+            day.innerHTML =days;
+            month.innerHTML = months;
+        
+
+
+        
+            
         }
 
         
