@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    padding: unset;
+    margin: unset;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: hsl(0, 0%, 94%);
+    font-family: "Poppins";
+    min-width: 375px;
+    padding: 50px;
+}
+
+.container {
+    width: 600px;
+    height: 500px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    border-radius: 20px;
+    border-bottom-right-radius: 150px;
+    background-color: hsl(0, 0%, 100%);
+    padding: 50px;
+
+}
+
+
+.container .top {
+    border-bottom: 1px solid lightgray;
+    height: 35%;
+    position: relative;
+    display: flex;
+}
+
+.container .top form{
+    display: flex;
+    /* margin-bottom: 10px; */
+}
+
+.container .top form div{
+    margin-right: 15px;
+    width: 100%;
+
+}
+
+.container .top form input {
+    display: block;
+    width: 100%;
+    padding: 15px 10px;
+    border: 1px solid #6f6b6b;
+    outline: none;
+    user-select: none;
+    color: #6f6b6b;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 800;
+}
+
+
+.container .top form label {
+    display: block;
+    font-size: 12px;
+    color: #6f6b6b;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+
+.container .button {
+    height: 70px;
+    width: 70px;
+    background-color: hsl(259, 100%, 65%);
+    position: absolute;
+    border-radius: 50%;
+    background-image: url("../image/icon-arrow.svg");
+    background-size: 30px;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: auto;
+    right: 0px;
+    left: 0px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    bottom: -35px;
+}
+
+.container .button:hover {
+    background-color: black;
+}
+
+
+
+.container .bottom {
+    padding-top: 60px;
+    font-size: 50px;
+    font-weight: 800;
+    user-select: none;
+}
+
+.container .bottom p span {
+    color: hsl(259, 100%, 65%);
+}
+
+
+.container .top form div .error {
+    color: hsl(0, 100%, 67%);
+    font-size: 12px;
+    margin-top: 5px;
+}

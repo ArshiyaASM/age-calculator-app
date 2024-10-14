@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="project10.css">
+    <link rel="stylesheet" href="project10_responsive.css">
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.30.1/moment.min.js"></script>
+    <script defer src="project10.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="top">
+            <form action="">
+               <div class="day">
+                    <label for="day">DAY</label>
+                    <input id="day" autocomplete="off" placeholder="DD" maxlength="2" type="text">
+                    <p class="error"></p>
+                </div>
+
+                <div class="month">
+                    <label for="month">MONTH</label>
+                    <input id="month" autocomplete="off" placeholder="MM" maxlength="2" type="text">
+                    <p class="error"></p>
+                </div>
+
+                <div class="year">
+                    <label for="year">YEAR</label>
+                    <input id="year" autocomplete="off" placeholder="YYYY" maxlength="4" type="text">
+                    <p class="error"></p>
+                </div> 
+            </form>
+            <div class="button">
+
+            </div>
+        </div>
+        <div class="bottom">
+            <p><span class="year_age">- -  </span>years</p>
+            <p><span class="month_age">- -   </span>months</p>
+            <p><span class="day_age">- -  </span>days</p>
+        </div>
+    </div>
+    
+</body>
+</html>
