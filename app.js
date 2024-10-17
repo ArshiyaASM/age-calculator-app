@@ -7,68 +7,64 @@ const day = document.querySelector(".day_age");
 const label = document.querySelectorAll("label");
 
 
-let checker = false;
-let checker1 = false;
-let checker2 = false;
-let checker3 = false;
+let checker = true;
+let checker1 = true;
+let checker2 = true;
+let checker3 = true;
 
 
 // for days input
 
 input[0].addEventListener("blur" , ()=>{
-    if(!(input[0].value.length == 0) || !(input[0].value == " ")){
-        checker = true;
-        input[0].style.border = "1px solid #6f6b6b";
-        input[0].style.color = "#6f6b6b";
-        error[0].innerHTML = "";
-        label[0].style.color = "#6f6b6b";
-    }
-
-    else {
-        checker = false;
-        input[0].style.border = "1px solid rgb(255, 87, 87)";
-        input[0].style.color = "rgb(255, 87, 87)";
-        error[0].innerHTML = "Must be valid day";
-        label[0].style.color = "rgb(255, 87, 87)";
-    }
-
-    if(Number(input[0].value) <= 31 && Number(input[0].value) > 0 && checker == true){
-        checker = true;
-        input[0].style.border = "1px solid #6f6b6b";
-        input[0].style.color = "#6f6b6b";
-        error[0].innerHTML = "";
-        label[0].style.color = "#6f6b6b";
-    }
-
-    else {
-        checker = false;
-        input[0].style.border = "1px solid rgb(255, 87, 87)";
-        input[0].style.color = "rgb(255, 87, 87)";
-        error[0].innerHTML = "Must be valid day";
-        label[0].style.color = "rgb(255, 87, 87)";
-    }
-
-    for(let item of input[0].value){
-
-
-        if(Number(item) || item == 0 && checker == true){
-            checker = true;
-            input[0].style.border = "1px solid #6f6b6b";
-            input[0].style.color = "#6f6b6b";
-            error[0].innerHTML = "";
-            label[0].style.color = "#6f6b6b";
-        }
-
-        else {
-            checker = false;
-            input[0].style.border = "1px solid rgb(255, 87, 87)";
-            input[0].style.color = "rgb(255, 87, 87)";
-            error[0].innerHTML = "Must be valid day";
-            label[0].style.color = "rgb(255, 87, 87)";
-        }
     
-    }
 
+    new Promise((resolve , reject)=>{
+
+        if(!(input[0].value.length == 0) || !(input[0].value == " ")){
+        input[0].style.border = "1px solid #6f6b6b";
+        input[0].style.color = "#6f6b6b";
+        error[0].innerHTML = "";
+        label[0].style.color = "#6f6b6b";
+        checker = true;
+        resolve()
+        }else {
+            reject()
+        }
+    }).then(()=>{
+        return new Promise((resolve, reject)=>{
+            if(Number(input[0].value) <= 31 && Number(input[0].value) > 0){
+                input[0].style.border = "1px solid #6f6b6b";
+                input[0].style.color = "#6f6b6b";
+                error[0].innerHTML = "";
+                label[0].style.color = "#6f6b6b";
+                checker = true;
+                resolve()
+            }else {
+                reject()
+            }
+        })
+    }).then(()=>{
+        return new Promise((resolve, reject)=>{
+            for(let item of input[0].value){
+                if(Number(item) || item == 0 && checker == true){
+                    input[0].style.border = "1px solid #6f6b6b";
+                    input[0].style.color = "#6f6b6b";
+                    error[0].innerHTML = "";
+                    label[0].style.color = "#6f6b6b";
+                    checker = true;
+                    resolve()
+                }else {
+                   reject()
+                }
+            }  
+        })
+    }).catch(()=>{
+        input[0].style.border = "1px solid rgb(255, 87, 87)";
+        input[0].style.color = "rgb(255, 87, 87)";
+        error[0].innerHTML = "Must be valid day";
+        label[0].style.color = "rgb(255, 87, 87)";
+        checker = false;
+    })
 })
 
 
@@ -80,70 +76,52 @@ input[0].addEventListener("blur" , ()=>{
 input[1].addEventListener("blur" , ()=>{
 
 
-    if(!(input[1].value.length == 0) || !(input[1].value == " ")){
-        checker1 = true;
-        input[1].style.border = "1px solid #6f6b6b";
-        input[1].style.color = "#6f6b6b";
-        error[1].innerHTML = "";
-        label[1].style.color = "#6f6b6b";
-    }
-
-    else {
-        checker1 = false;
-        input[1].style.border = "1px solid rgb(255, 87, 87)";
-        input[1].style.color = "rgb(255, 87, 87)";
-        error[1].innerHTML = "Must be valid month";
-        label[1].style.color = "rgb(255, 87, 87)";
-    }
-
-
-    
-    if(checker1 == true){
-
-        if(Number(input[1].value) <= 12 && Number(input[1].value) > 0){
+    new Promise((resolve, reject)=>{
+        if(!(input[1].value.length == 0) || !(input[1].value == " ")){
+            resolve()
             checker1 = true;
             input[1].style.border = "1px solid #6f6b6b";
             input[1].style.color = "#6f6b6b";
             error[1].innerHTML = "";
             label[1].style.color = "#6f6b6b";
+        }else {
+            reject() 
         }
-
-        else {
-            checker1 = false;
-            input[1].style.border = "1px solid rgb(255, 87, 87)";
-            input[1].style.color = "rgb(255, 87, 87)";
-            error[1].innerHTML = "Must be valid month";
-            label[1].style.color = "rgb(255, 87, 87)";
-        }
- 
-    }
-
-
-
-    if(checker1 == true){
-       for(let item of input[1].value){
-
-
-            if(Number(item) || item == 0){
-                
+    }).then(()=>{
+        new Promise((reslove, reject)=>{
+            if(Number(input[1].value) <= 12 && Number(input[1].value) > 0){
+                reslove();
                 checker1 = true;
                 input[1].style.border = "1px solid #6f6b6b";
                 input[1].style.color = "#6f6b6b";
                 error[1].innerHTML = "";
                 label[1].style.color = "#6f6b6b";
+            }else {
+                reject();
             }
-
-            else {
-                checker1 = false;
-                input[1].style.border = "1px solid rgb(255, 87, 87)";
-                input[1].style.color = "rgb(255, 87, 87)";
-                error[1].innerHTML = "Must be valid month";
-                label[1].style.color = "rgb(255, 87, 87)";
-            }
-    
-        } 
-    }
-    
+        })
+    }).then(()=>{
+        new Promise((reslove, reject)=>{
+            for(let item of input[1].value){
+                if(Number(item) || item == 0){
+                    reslove();
+                    checker1 = true;
+                    input[1].style.border = "1px solid #6f6b6b";
+                    input[1].style.color = "#6f6b6b";
+                    error[1].innerHTML = "";
+                    label[1].style.color = "#6f6b6b";
+                }else {
+                    reject();
+                }
+            } 
+        })
+    }).catch(()=>{
+        checker1 = false;
+        input[1].style.border = "1px solid rgb(255, 87, 87)";
+        input[1].style.color = "rgb(255, 87, 87)";
+        error[1].innerHTML = "Must be valid month";
+        label[1].style.color = "rgb(255, 87, 87)";
+    })
 })
 
 
@@ -156,116 +134,99 @@ input[1].addEventListener("blur" , ()=>{
 
 
 input[2].addEventListener("blur" , ()=>{
+    const todyDate = new moment();
+    const date = new moment(input[2].value);
 
-
-    if(!(input[2].value.length == 0) || !(input[2].value == " ")){
-        checker2 = true;
+    new Promise((resolve , reject)=>{
+        if(!(input[2].value.length == 0) || !(input[2].value == " ")){
+        resolve()
         input[2].style.border = "1px solid #6f6b6b";
         input[2].style.color = "#6f6b6b";
         error[2].innerHTML = "";
         label[2].style.color = "#6f6b6b";
-    }
-
-    else {
-        checker2 = false;
-        input[2].style.border = "1px solid rgb(255, 87, 87)";
-        input[2].style.color = "rgb(255, 87, 87)";
-        error[2].innerHTML = "Must be valid year";
-    }
-
-
-    const todyDate = new moment();
-    const date = new moment(input[2].value);
-
-
-
-    if(checker2 == true){
-        const different = todyDate.diff(date);
-        if(different > 0){
-            checker2 = true;
-            input[2].style.border = "1px solid #6f6b6b";
-            input[2].style.color = "#6f6b6b";
-            error[2].innerHTML = "";
-            label[2].style.color = "#6f6b6b";
+        checker2 = true;
+        }else {
+            reject()
         }
-
-        else {
-            checker2 = false;
-            input[2].style.border = "1px solid rgb(255, 87, 87)";
-            input[2].style.color = "rgb(255, 87, 87)";
-            error[2].innerHTML = "Must be valid year"; 
-            label[2].style.color = "rgb(255, 87, 87)";
-        }
-    }
-
-    if(checker2 == true){
-        if(input[2].value.length == 4){
-            checker2 = true;
-            input[2].style.border = "1px solid #6f6b6b";
-            input[2].style.color = "#6f6b6b";
-            error[2].innerHTML = "";
-            label[2].style.color = "#6f6b6b";
-        }
-
-        else {
-            checker2 = false;
-            input[2].style.border = "1px solid rgb(255, 87, 87)";
-            input[2].style.color = "rgb(255, 87, 87)";
-            error[2].innerHTML = "Must be valid year"; 
-            label[2].style.color = "rgb(255, 87, 87)";
-        }
-    }
-    
-    if(checker2 == true){
-        if(input[2].value > 1900){
-            checker2 = true;
-            input[2].style.border = "1px solid #6f6b6b";
-            input[2].style.color = "#6f6b6b";
-            error[2].innerHTML = "";
-            label[2].style.color = "#6f6b6b";
-        }
-
-        else {
-            checker2 = false;
-            input[2].style.border = "1px solid rgb(255, 87, 87)";
-            input[2].style.color = "rgb(255, 87, 87)";
-            error[2].innerHTML = "Must be valid year"; 
-            label[2].style.color = "rgb(255, 87, 87)";
-        }
-        
-    }
-    
-
-    if(checker2 == true){
-       for(let item of input[2].value){
-
-
-            if(Number(item) || item == 0){
-                
-                checker2 = true;
+    }).then(()=>{
+        return new Promise((resolve , reject)=>{
+            const different = todyDate.diff(date);
+            if(different > 0){
+                resolve()
                 input[2].style.border = "1px solid #6f6b6b";
                 input[2].style.color = "#6f6b6b";
                 error[2].innerHTML = "";
                 label[2].style.color = "#6f6b6b";
+                checker2 = true;
+            }else {
+                reject()
+                
             }
-
-            else {
-                checker2 = false;
-                input[2].style.border = "1px solid rgb(255, 87, 87)";
-                input[2].style.color = "rgb(255, 87, 87)";
-                error[2].innerHTML = "Must be valid year";
-                label[2].style.color = "rgb(255, 87, 87)";
+        })
+    }).then(()=>{
+        return new Promise((resolve, reject)=>{
+            if(input[2].value.length == 4){
+                resolve()
+                input[2].style.border = "1px solid #6f6b6b";
+                input[2].style.color = "#6f6b6b";
+                error[2].innerHTML = "";
+                label[2].style.color = "#6f6b6b";
+                checker2 = true;
+            }else {
+                reject()
             }
-    
-        } 
-    }
+        })
+    }).then(()=>{
+        return new Promise((resolve, reject)=>{
+            if(input[2].value > 1900){
+                resolve
+                input[2].style.border = "1px solid #6f6b6b";
+                input[2].style.color = "#6f6b6b";
+                error[2].innerHTML = "";
+                label[2].style.color = "#6f6b6b";
+                checker2 = true;
+            }else {
+                reject()
+            }
+        })
+    }).then(()=>{
+        return new Promise((resolve, reject)=>{
+            for(let item of input[2].value){
+                if(Number(item) || item == 0){
+                    resolve()
+                    input[2].style.border = "1px solid #6f6b6b";
+                    input[2].style.color = "#6f6b6b";
+                    error[2].innerHTML = "";
+                    label[2].style.color = "#6f6b6b";
+                    checker2 = true;
+                }else {
+                    reject()
+                }
+        
+            } 
+        })
+    })
+    .catch(()=>{
+        input[2].style.border = "1px solid rgb(255, 87, 87)";
+        input[2].style.color = "rgb(255, 87, 87)";
+        error[2].innerHTML = "Must be valid year"; 
+        label[2].style.color = "rgb(255, 87, 87)";
+        checker2 = false;
+    })
     
 })
 
 
 
 button.addEventListener("click" , ()=>{
-    if(checker == true && checker1 == true && checker2 == true){
+    new Promise((resolve, reject)=> {
+        if(checker == true && checker1 == true && checker2 == true){
+            resolve();
+        }else {
+            reject();
+        }
+
+    }).then(()=>{
         checker2 = true;
         input[2].style.border = "1px solid #6f6b6b";
         input[2].style.color = "#6f6b6b";
@@ -284,15 +245,17 @@ button.addEventListener("click" , ()=>{
         error[0].innerHTML = "";
         label[0].style.color = "#6f6b6b";
 
-
-
-        const toDayDate = new moment();
-        const dateInInput = new moment(input[2].value+"-"+input[1].value+"-"+input[0].value);
-
-        const different = toDayDate.diff(dateInInput);
-
-
-        if(different > 0) {
+        new Promise((resolve, reject)=>{
+            const toDayDate = new moment();
+            const dateInInput = new moment(input[2].value+"-"+input[1].value+"-"+input[0].value);
+            const different = toDayDate.diff(dateInInput);
+            if(different > 0) {
+                resolve()
+            }else {
+                reject()
+            }
+    
+        }).then(()=>{
             checker2 = true;
             input[2].style.border = "1px solid #6f6b6b";
             input[2].style.color = "#6f6b6b";
@@ -312,9 +275,8 @@ button.addEventListener("click" , ()=>{
             label[0].style.color = "#6f6b6b";
 
             checker3 = true;
-        }
 
-        else {
+        }).catch(()=>{
             checker2 = false;
             input[2].style.border = "1px solid rgb(255, 87, 87)";
             input[2].style.color = "rgb(255, 87, 87)";
@@ -332,11 +294,12 @@ button.addEventListener("click" , ()=>{
             input[0].style.color = "rgb(255, 87, 87)";
             error[0].innerHTML = "Must be valid day";
             label[0].style.color = "rgb(255, 87, 87)";
+            checker3 = false ;
+        })
 
-            checker3 = false;
+        
 
-        }
-
+        
         if(checker3 == true){
 
             const dob = new Date((input[2].value+"-"+input[1].value+"-"+input[0].value));
@@ -367,16 +330,11 @@ button.addEventListener("click" , ()=>{
             year.innerHTML = age;
             day.innerHTML =days;
             month.innerHTML = months;
-        
-
-
-        
-            
         }
 
-        
-    }
-    else {
+
+
+    }).catch(()=>{
         checker2 = false;
         input[2].style.border = "1px solid rgb(255, 87, 87)";
         input[2].style.color = "rgb(255, 87, 87)";
@@ -394,6 +352,5 @@ button.addEventListener("click" , ()=>{
         input[0].style.color = "rgb(255, 87, 87)";
         error[0].innerHTML = "Must be valid day";
         label[0].style.color = "rgb(255, 87, 87)";
-
-    }
+    })
 })
