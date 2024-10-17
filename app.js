@@ -301,7 +301,6 @@ button.addEventListener("click" , ()=>{
 
 
         let age = UTCcurrentDate.getFullYear() - dob.getFullYear();
-        year.innerHTML = age;
 
         let monthDiff = UTCcurrentDate.getMonth() - dob.getMonth();
         let dayDiff = UTCcurrentDate.getDate() - dob.getDate();
