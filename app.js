@@ -7,40 +7,34 @@ const day = document.querySelector(".day_age");
 const label = document.querySelectorAll("label");
 
 
-let checker = false;
+let check = false;
 let checker1 = false;
 let checker2 = false;
 let checker3 = false;
 
-
-
-
-
 // for days input
 
 input[0].addEventListener("blur" , ()=>{
-    
-
-    new Promise((resolve , reject)=>{
-
-        if(!(input[0].value.length == 0) || !(input[0].value == " ")){
+    function back(){
         input[0].style.border = "1px solid #6f6b6b";
         input[0].style.color = "#6f6b6b";
         error[0].innerHTML = "";
         label[0].style.color = "#6f6b6b";
-        checker = true;
-        resolve()
+        check = true;
+    }
+
+    new Promise((resolve , reject)=>{
+
+        if(!(input[0].value.length == 0) || !(input[0].value == " ")){
+        back();
+        resolve();
         }else {
             reject()
         }
     }).then(()=>{
         return new Promise((resolve, reject)=>{
             if(Number(input[0].value) <= 31 && Number(input[0].value) > 0){
-                input[0].style.border = "1px solid #6f6b6b";
-                input[0].style.color = "#6f6b6b";
-                error[0].innerHTML = "";
-                label[0].style.color = "#6f6b6b";
-                checker = true;
+                back();
                 resolve()
             }else {
                 reject()
@@ -49,12 +43,8 @@ input[0].addEventListener("blur" , ()=>{
     }).then(()=>{
         return new Promise((resolve, reject)=>{
             for(let item of input[0].value){
-                if(Number(item) || item == 0 && checker == true){
-                    input[0].style.border = "1px solid #6f6b6b";
-                    input[0].style.color = "#6f6b6b";
-                    error[0].innerHTML = "";
-                    label[0].style.color = "#6f6b6b";
-                    checker = true;
+                if(Number(item) || item == 0 && check == true){
+                    back();
                     resolve()
                 }else {
                    reject()
@@ -66,7 +56,7 @@ input[0].addEventListener("blur" , ()=>{
         input[0].style.color = "rgb(255, 87, 87)";
         error[0].innerHTML = "Must be valid day";
         label[0].style.color = "rgb(255, 87, 87)";
-        checker = false;
+        check = false;
     })
 })
 
@@ -78,15 +68,18 @@ input[0].addEventListener("blur" , ()=>{
 
 input[1].addEventListener("blur" , ()=>{
 
+    function back(){
+        checker1 = true;
+        input[1].style.border = "1px solid #6f6b6b";
+        input[1].style.color = "#6f6b6b";
+        error[1].innerHTML = "";
+        label[1].style.color = "#6f6b6b";
+    }
 
     return new Promise((resolve, reject)=>{
         if(!(input[1].value.length == 0) || !(input[1].value == " ")){
-            resolve()
-            checker1 = true;
-            input[1].style.border = "1px solid #6f6b6b";
-            input[1].style.color = "#6f6b6b";
-            error[1].innerHTML = "";
-            label[1].style.color = "#6f6b6b";
+            resolve();
+            back();
         }else {
             reject() 
         }
@@ -94,11 +87,7 @@ input[1].addEventListener("blur" , ()=>{
         return new Promise((reslove, reject)=>{
             if(Number(input[1].value) <= 12 && Number(input[1].value) > 0){
                 reslove();
-                checker1 = true;
-                input[1].style.border = "1px solid #6f6b6b";
-                input[1].style.color = "#6f6b6b";
-                error[1].innerHTML = "";
-                label[1].style.color = "#6f6b6b";
+                back();   
             }else {
                 reject();
             }
@@ -108,11 +97,7 @@ input[1].addEventListener("blur" , ()=>{
             for(let item of input[1].value){
                 if(Number(item) || item == 0){
                     reslove();
-                    checker1 = true;
-                    input[1].style.border = "1px solid #6f6b6b";
-                    input[1].style.color = "#6f6b6b";
-                    error[1].innerHTML = "";
-                    label[1].style.color = "#6f6b6b";
+                    back();
                 }else {
                     reject();
                 }
@@ -140,14 +125,18 @@ input[2].addEventListener("blur" , ()=>{
     const todyDate = new moment();
     const date = new moment(input[2].value);
 
-    new Promise((resolve , reject)=>{
-        if(!(input[2].value.length == 0) || !(input[2].value == " ")){
-        resolve()
+    function back(){
         input[2].style.border = "1px solid #6f6b6b";
         input[2].style.color = "#6f6b6b";
         error[2].innerHTML = "";
         label[2].style.color = "#6f6b6b";
         checker2 = true;
+    }
+
+    new Promise((resolve , reject)=>{
+        if(!(input[2].value.length == 0) || !(input[2].value == " ")){
+        resolve()
+        back()
         }else {
             reject()
         }
@@ -156,11 +145,7 @@ input[2].addEventListener("blur" , ()=>{
             const different = todyDate.diff(date);
             if(different > 0){
                 resolve()
-                input[2].style.border = "1px solid #6f6b6b";
-                input[2].style.color = "#6f6b6b";
-                error[2].innerHTML = "";
-                label[2].style.color = "#6f6b6b";
-                checker2 = true;
+                back()
             }else {
                 reject()
                 
@@ -170,11 +155,7 @@ input[2].addEventListener("blur" , ()=>{
         return new Promise((resolve, reject)=>{
             if(input[2].value.length == 4){
                 resolve()
-                input[2].style.border = "1px solid #6f6b6b";
-                input[2].style.color = "#6f6b6b";
-                error[2].innerHTML = "";
-                label[2].style.color = "#6f6b6b";
-                checker2 = true;
+                back()
             }else {
                 reject()
             }
@@ -182,12 +163,9 @@ input[2].addEventListener("blur" , ()=>{
     }).then(()=>{
         return new Promise((resolve, reject)=>{
             if(input[2].value > 1900){
-                resolve
-                input[2].style.border = "1px solid #6f6b6b";
-                input[2].style.color = "#6f6b6b";
-                error[2].innerHTML = "";
-                label[2].style.color = "#6f6b6b";
-                checker2 = true;
+                resolve()
+                back()
+
             }else {
                 reject()
             }
@@ -197,11 +175,7 @@ input[2].addEventListener("blur" , ()=>{
             for(let item of input[2].value){
                 if(Number(item) || item == 0){
                     resolve()
-                    input[2].style.border = "1px solid #6f6b6b";
-                    input[2].style.color = "#6f6b6b";
-                    error[2].innerHTML = "";
-                    label[2].style.color = "#6f6b6b";
-                    checker2 = true;
+                    back()
                 }else {
                     reject()
                 }
@@ -222,32 +196,37 @@ input[2].addEventListener("blur" , ()=>{
 
 
 button.addEventListener("click" , ()=>{
+    function back(){
+        checker2 = true;
+        input[2].style.border = "1px solid #6f6b6b";
+        input[2].style.color = "#6f6b6b";
+        error[2].innerHTML = "";
+        label[2].style.color = "#6f6b6b";
+
+        checker1 = true;
+        input[1].style.border = "1px solid #6f6b6b";
+        input[1].style.color = "#6f6b6b";
+        error[1].innerHTML = "";
+        label[1].style.color = "#6f6b6b";
+
+        check = true;
+        input[0].style.border = "1px solid #6f6b6b";
+        input[0].style.color = "#6f6b6b";
+        error[0].innerHTML = "";
+        label[0].style.color = "#6f6b6b";
+    }
+
+
+
     new Promise((resolve, reject)=> {
-        if(checker == true && checker1 == true && checker2 == true){
+        if(check == true && checker1 == true && checker2 == true){
             resolve();
         }else {
             reject();
         }
     }).then(()=>{
         return new Promise((resolve, reject)=>{
-            checker2 = true;
-            input[2].style.border = "1px solid #6f6b6b";
-            input[2].style.color = "#6f6b6b";
-            error[2].innerHTML = "";
-            label[2].style.color = "#6f6b6b";
-
-            checker1 = true;
-            input[1].style.border = "1px solid #6f6b6b";
-            input[1].style.color = "#6f6b6b";
-            error[1].innerHTML = "";
-            label[1].style.color = "#6f6b6b";
-
-            checker = true;
-            input[0].style.border = "1px solid #6f6b6b";
-            input[0].style.color = "#6f6b6b";
-            error[0].innerHTML = "";
-            label[0].style.color = "#6f6b6b";
-
+            back();
 
             let different = new Date() - new Date(input[2].value+"-"+input[1].value+"-"+input[0].value);
             console.log(different)
@@ -261,69 +240,8 @@ button.addEventListener("click" , ()=>{
 
         })
     }).then(()=>{
-        checker2 = true;
-        input[2].style.border = "1px solid #6f6b6b";
-        input[2].style.color = "#6f6b6b";
-        error[2].innerHTML = "";
-        label[2].style.color = "#6f6b6b";
-    
-        checker1 = true;
-        input[1].style.border = "1px solid #6f6b6b";
-        input[1].style.color = "#6f6b6b";
-        error[1].innerHTML = "";
-        label[1].style.color = "#6f6b6b";
-    
-        checker = true;
-        input[0].style.border = "1px solid #6f6b6b";
-        input[0].style.color = "#6f6b6b";
-        error[0].innerHTML = "";
-        label[0].style.color = "#6f6b6b";
-        
-
-        if(input[0].value.length == 1){
-            input[0].value = `0${input[0].value}`;
-        }
-
-        if(input[1].value.length == 1){
-            input[1].value = `0${input[1].value}`;
-        }
-
-
-
-        let dob = new Date((input[2].value+"-"+input[1].value+"-"+input[0].value + "T00:00:00"));
-        console.log(dob);
-
-        const currentDate = new Date();
-        const utcOffset = currentDate.getTimezoneOffset() * 60000;
-        const UTCcurrentDate = new Date(currentDate.getTime() + utcOffset);
-
-
-        let age = UTCcurrentDate.getFullYear() - dob.getFullYear();
-
-        let monthDiff = UTCcurrentDate.getMonth() - dob.getMonth();
-        let dayDiff = UTCcurrentDate.getDate() - dob.getDate();
-
-        if(monthDiff < 0 || monthDiff === 0 && dayDiff < 0){
-            age--;
-        }
-
-
-
-
-        if(dayDiff < 0){
-            const dayInPrevMonth = new Date(UTCcurrentDate.getFullYear(), currentDate.getMonth(), 0).getDate();
-            dayDiff = dayInPrevMonth + UTCcurrentDate.getDate() - dob.getDate();
-            monthDiff--;
-        }
-
-        if(monthDiff < 0){
-            monthDiff += 12
-        }
-
-        year.innerHTML = age;
-        month.innerHTML = monthDiff;
-        day.innerHTML = dayDiff;
-
+        back();
+        ageCalculator();
     }).catch((Error)=>{
         console.log(Error)
         checker2 = false;
@@ -349,3 +267,43 @@ button.addEventListener("click" , ()=>{
 
 
 
+
+function ageCalculator(){
+    if(input[0].value.length == 1){
+        input[0].value = `0${input[0].value}`;
+    }
+    if(input[1].value.length == 1){
+        input[1].value = `0${input[1].value}`;
+    }
+
+    let dob = new Date((input[2].value+"-"+input[1].value+"-"+input[0].value + "T00:00:00"));
+    
+    const currentDate = new Date();
+    const utcOffset = currentDate.getTimezoneOffset() * 60000;
+    const UTCcurrentDate = new Date(currentDate.getTime() + utcOffset);
+    const UTCdob = new Date(dob.getTime() + utcOffset);
+
+
+    let age = UTCcurrentDate.getFullYear() - UTCdob.getFullYear();
+
+    let monthDiff = UTCcurrentDate.getMonth() - UTCdob.getMonth();
+    let dayDiff = UTCcurrentDate.getDate() - UTCdob.getDate();
+
+    if(monthDiff < 0 || monthDiff === 0 && dayDiff < 0){
+        age--;
+    }
+
+    if(dayDiff < 0){
+        const dayInPrevMonth = new Date(UTCcurrentDate.getFullYear(), currentDate.getMonth(), 0).getDate();
+        dayDiff = dayInPrevMonth + UTCcurrentDate.getDate() - UTCdob.getDate();
+        monthDiff--;
+    }
+
+    if(monthDiff < 0){
+        monthDiff += 12
+    }
+
+    year.innerHTML = age;
+    month.innerHTML = monthDiff;
+    day.innerHTML = dayDiff;
+}
