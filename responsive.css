@@ -38,6 +38,10 @@
     
     }
 
+    .container .top form div .error {
+        font-size: 12px;
+    }
+
     .container .top {
         height: 30%;
     }

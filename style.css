@@ -111,6 +111,6 @@ body {
 
 .container .top form div .error {
     color: hsl(0, 100%, 67%);
-    font-size: 12px;
+    font-size: 8px;
     margin-top: 5px;
 }
