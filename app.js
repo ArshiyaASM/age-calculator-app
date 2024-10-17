@@ -13,7 +13,7 @@ let checker2 = false;
 let checker3 = false;
 
 
-console.log(input)
+
 
 
 // for days input
