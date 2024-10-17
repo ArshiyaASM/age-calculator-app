@@ -282,12 +282,10 @@ button.addEventListener("click" , ()=>{
 
         if(input[0].value.length == 1){
             input[0].value = `0${input[0].value}`;
-            console.log(input[0].value);
         }
 
         if(input[1].value.length == 1){
             input[1].value = `0${input[1].value}`;
-            console.log(input[1].value);
         }
 
 
