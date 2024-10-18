@@ -229,7 +229,6 @@ button.addEventListener("click" , ()=>{
             back();
 
             let different = new Date() - new Date(input[2].value+"-"+input[1].value+"-"+input[0].value);
-            console.log(different)
             if(different > 0) {
                 resolve()
             }
@@ -256,7 +255,7 @@ button.addEventListener("click" , ()=>{
         error[1].innerHTML = "Must be valid month";
         label[1].style.color = "rgb(255, 87, 87)";
 
-        checker = false;
+        check = false;
         input[0].style.border = "1px solid rgb(255, 87, 87)";
         input[0].style.color = "rgb(255, 87, 87)";
         error[0].innerHTML = "Must be valid day";
@@ -276,16 +275,13 @@ function ageCalculator(){
         input[1].value = `0${input[1].value}`;
     }
 
-    let dob = new Date((input[2].value+"-"+input[1].value+"-"+input[0].value + "T00:00:00"));
-    
+    let UTCdob = new Date(input[2].value, input[1].value - 1, input[0].value);
+    // console.log(dob)
     const currentDate = new Date();
-    const utcOffset = currentDate.getTimezoneOffset() * 60000;
-    const UTCcurrentDate = new Date(currentDate.getTime() + utcOffset);
-    const UTCdob = new Date(dob.getTime() + utcOffset);
+    const UTCcurrentDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate());
 
 
     let age = UTCcurrentDate.getFullYear() - UTCdob.getFullYear();
-
     let monthDiff = UTCcurrentDate.getMonth() - UTCdob.getMonth();
     let dayDiff = UTCcurrentDate.getDate() - UTCdob.getDate();
 
