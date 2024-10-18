@@ -275,23 +275,22 @@ function ageCalculator(){
         input[1].value = `0${input[1].value}`;
     }
 
-    let UTCdob = new Date(input[2].value, input[1].value - 1, input[0].value);
-    // console.log(dob)
+    let dob = new Date(input[2].value, input[1].value - 1, input[0].value);
     const currentDate = new Date();
-    const UTCcurrentDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate());
+    const copyCurrentDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate());
 
 
-    let age = UTCcurrentDate.getFullYear() - UTCdob.getFullYear();
-    let monthDiff = UTCcurrentDate.getMonth() - UTCdob.getMonth();
-    let dayDiff = UTCcurrentDate.getDate() - UTCdob.getDate();
+    let age = copyCurrentDate.getFullYear() - dob.getFullYear();
+    let monthDiff = copyCurrentDate.getMonth() - dob.getMonth();
+    let dayDiff = copyCurrentDate.getDate() - dob.getDate();
 
     if(monthDiff < 0 || monthDiff === 0 && dayDiff < 0){
         age--;
     }
 
     if(dayDiff < 0){
-        const dayInPrevMonth = new Date(UTCcurrentDate.getFullYear(), currentDate.getMonth(), 0).getDate();
-        dayDiff = dayInPrevMonth + UTCcurrentDate.getDate() - UTCdob.getDate();
+        const dayInPrevMonth = new Date(copyCurrentDate.getFullYear(), copyCurrentDate.getMonth(), 0).getDate();
+        dayDiff = dayInPrevMonth + copyCurrentDate.getDate() - dob.getDate();
         monthDiff--;
     }
 
